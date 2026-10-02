@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>SneakDrop — Midnight Run</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="sr-only" href="#drop">Skip to the drop</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="logo" aria-label="SneakDrop">Sneak<span>Drop</span></div>
+      <div class="header-right">
+        <div class="chip" id="drop-status" data-tone="idle"><span class="dot" aria-hidden="true"></span><span id="drop-status-text">Connecting…</span></div>
+        <div class="buyer">
+          <label for="user"><span>Buyer</span></label>
+          <input id="user" size="12" autocomplete="off" spellcheck="false" aria-label="Buyer ID (open another tab with ?user=bob to be someone else)">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="drop">
+    <section class="wrap hero" aria-labelledby="product-name">
+      <div class="hero__media">
+        <img id="product-img" src="images/midnight-run.svg" alt="Midnight Run limited-edition sneaker, side view">
+      </div>
+      <div class="hero__body">
+        <span class="badge">Limited drop</span>
+        <h1 class="hero__name" id="product-name">Midnight Run</h1>
+        <p class="hero__desc">A limited edition sneaker built for the next generation.</p>
+        <p class="hero__price">₹12,999</p>
+        <div class="hero__stock" id="hero-stock" data-level="ok">
+          <div class="stock-line"><span class="stock-line__num" id="hero-stock-text">— pairs left</span></div>
+          <div class="bar" role="presentation"><div class="bar__fill" id="hero-stock-bar"></div></div>
+        </div>
+        <div class="hero__actions">
+          <button class="btn btn--primary" id="btn-hero" type="button" disabled>Buy now</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="status-title">
+      <h2 class="section__title" id="status-title">Your drop status</h2>
+
+      <div class="card" style="margin-bottom:16px">
+        <span class="card__label" id="timeline-label">Progress</span>
+        <ol class="timeline" aria-labelledby="timeline-label" id="timeline">
+          <li class="timeline__step" data-step="reserve" data-state="pending"><span class="timeline__icon" aria-hidden="true"></span><span class="timeline__label">Reservation<span class="timeline__hint" data-hint></span></span></li>
+          <li class="timeline__step" data-step="pay" data-state="pending"><span class="timeline__icon" aria-hidden="true"></span><span class="timeline__label">Payment<span class="timeline__hint" data-hint></span></span></li>
+          <li class="timeline__step" data-step="confirm" data-state="pending"><span class="timeline__icon" aria-hidden="true"></span><span class="timeline__label">Confirmed<span class="timeline__hint" data-hint></span></span></li>
+        </ol>
+      </div>
+
+      <div class="grid">
+        <article class="card stock-card" id="card-stock" data-level="ok">
+          <span class="card__label">Stock</span>
+          <p class="card__headline" id="stock-headline">Available</p>
+          <p class="card__big"><span id="stock-num">—</span><small id="stock-of">of — pairs</small></p>
+          <div class="bar" role="img" id="stock-bar-wrap" aria-label="Stock remaining"><div class="bar__fill" id="stock-bar"></div></div>
+          <p class="card__text" id="stock-text"></p>
+        </article>
+
+        <article class="card" id="card-purchases">
+          <span class="card__label">Your purchases</span>
+          <div class="pips" id="pips" aria-hidden="true"></div>
+          <p class="card__big"><span id="purchased-num">0</span><small id="purchased-of">/ 2 pairs</small></p>
+          <p class="card__headline" id="limit-headline" hidden>Purchase limit reached</p>
+          <p class="card__text" id="purchases-text"></p>
+        </article>
+
+        <article class="card" id="card-reservation" data-tone="idle">
+          <span class="card__label">Your reservation</span>
+          <p class="card__headline" id="res-headline">No active reservation</p>
+          <div id="res-timer-block" hidden>
+            <div class="countdown" id="countdown" role="timer" aria-label="Time left on your reservation" data-urgency="ok">0:00</div>
+            <div class="bar hold-bar" id="hold-bar" style="margin-top:14px" data-urgency="ok"><div class="bar__fill" id="hold-bar-fill" style="width:100%"></div></div>
+          </div>
+          <p class="card__text" id="res-text">Reserve a pair to start your timer.</p>
+          <button class="btn btn--primary" id="btn-pay" type="button" hidden>Pay now</button>
+          <button class="btn btn--primary" id="btn-expired-retry" type="button" hidden>Try again</button>
+        </article>
+
+        <article class="card" id="card-payment" data-tone="idle">
+          <span class="card__label">Payment</span>
+          <p class="card__headline" id="pay-headline">Nothing to pay yet</p>
+          <p class="card__text" id="pay-text">Payment opens once you hold a pair.</p>
+          <button class="btn btn--primary" id="btn-retry" type="button" hidden>Try again</button>
+        </article>
+
+        <article class="card span-2" id="card-queue" data-tone="idle">
+          <span class="card__label">Waiting line</span>
+          <p class="card__headline" id="queue-headline">No line right now</p>
+          <p class="queue-pos" id="queue-pos" hidden>#1</p>
+          <div class="bar" id="queue-bar-wrap" hidden role="presentation"><div class="bar__fill" id="queue-bar"></div></div>
+          <p class="card__text" id="queue-text"></p>
+          <button class="btn btn--secondary" id="btn-join" type="button" hidden>Join waiting line</button>
+          <button class="btn btn--danger" id="btn-leave" type="button" hidden>Leave queue</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="process-title">
+      <h2 class="section__title" id="process-title">How the drop works</h2>
+      <ol class="process">
+        <li class="step"><span class="step__n" aria-hidden="true">1</span><div><h3>Reserve</h3><p>Hold a pair. Your timer starts immediately and the pair is yours until it runs out.</p></div></li>
+        <li class="step"><span class="step__n" aria-hidden="true">2</span><div><h3>Pay</h3><p>Finish payment before your timer ends. Expired pairs go to the next person in line.</p></div></li>
+        <li class="step"><span class="step__n" aria-hidden="true">3</span><div><h3>Confirm</h3><p>Once your payment clears, the pair is secured. Limit of two pairs per person.</p></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <details class="sys" id="sys">
+        <summary>System status</summary>
+        <div class="sys__grid" id="sys-grid" aria-live="off">
+          <div class="sys__item"><b data-sys="total">—</b>Total stock</div>
+          <div class="sys__item"><b data-sys="available">—</b>Available</div>
+          <div class="sys__item"><b data-sys="held">—</b>Held</div>
+          <div class="sys__item"><b data-sys="paid">—</b>Paid</div>
+          <div class="sys__item"><b data-sys="expired">—</b>Expired</div>
+          <div class="sys__item"><b data-sys="queueLength">—</b>Waiting</div>
+        </div>
+        <p class="chip sys__status" id="sys-status" data-tone="idle"><span class="dot" aria-hidden="true"></span><span id="sys-status-text">Loading…</span></p>
+      </details>
+      <p>SneakDrop — limited pairs, one fair queue.</p>
+    </div>
+  </footer>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+  <div class="sr-only" id="sr-status" aria-live="polite" aria-atomic="true"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

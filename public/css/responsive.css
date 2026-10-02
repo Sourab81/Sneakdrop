@@ -1,0 +1,19 @@
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero__media { aspect-ratio: 16 / 10; max-height: 420px; }
+}
+@media (max-width: 768px) {
+  .grid, .process { grid-template-columns: 1fr; }
+  .grid .span-2 { grid-column: auto; }
+  .timeline { flex-direction: column; gap: 0; }
+  .timeline__step { flex-direction: row; align-items: flex-start; gap: 14px; padding-bottom: 18px; }
+  .timeline__step::before { left: 15px; top: 32px; width: 2px; height: calc(100% - 32px); right: auto; }
+  .site-header .buyer span { display: none; }
+  .btn { min-height: 52px; }
+  .toasts { left: 12px; right: 12px; bottom: 12px; width: auto; }
+}
+@media (max-width: 768px) {
+  .header-right { gap: 12px; }
+  .chip { white-space: nowrap; font-size: .8rem; }
+  .buyer input { width: 92px; }
+}

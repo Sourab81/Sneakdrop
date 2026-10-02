@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="t">
+  <title id="t">Midnight Run sneaker, side view</title>
+  <ellipse cx="320" cy="372" rx="250" ry="18" fill="#000" opacity=".5"/>
+  <path d="M60 300c0-22 14-34 40-40l92-22c18-5 30-18 40-40l22-44c6-12 20-16 32-10l44 22c14 7 26 16 38 28l56 54c14 14 36 22 66 28l40 8c18 4 30 16 30 34v22c0 10-8 18-18 18H78c-10 0-18-8-18-18z" fill="#1b1b1b" stroke="#333" stroke-width="3"/>
+  <path d="M62 330h516v26c0 10-8 18-18 18H80c-10 0-18-8-18-18z" fill="#f2f2f2"/>
+  <path d="M62 330h516" stroke="#d9ff00" stroke-width="6"/>
+  <path d="M214 232c34-8 62 4 92 28 30 24 70 34 120 40" fill="none" stroke="#d9ff00" stroke-width="10" stroke-linecap="round"/>
+  <path d="M236 152l30 18M262 134l30 18M288 118l30 18" stroke="#444" stroke-width="5" stroke-linecap="round"/>
+  <path d="M82 292c10-6 26-8 42-10" stroke="#333" stroke-width="3" fill="none"/>
+</svg>
